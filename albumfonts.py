@@ -29,15 +29,16 @@ btn_details = [
     ["#FFFFFF", "#381F0F"]
 ]
 
-def get_font_details(index):
+def get_font_details(album):
     """
     returns all the details for a desired font
-    :param index: the index of the desired font
-    :return: list of details: Family | Album | fg | bg
+    :param album: the album/index of the desired font
+    :return: list of details: Family | fg | bg
     """
+    index = album_list.index(album)  # get index of album
+
     details = [
         font_families[index],
-        album_list[index],
         btn_details[index][0],
         btn_details[index][1]
     ]
