@@ -18,3 +18,27 @@ file_list = ["Fonts\AutourOne-Regular.ttf",
 # Names of the fonts / Font families
 font_families = ["Autour One", "Joti One", "Roboto Slab",
                  "Special Gothic Expanded One", "Luckiest Guy", "Sarpanch"]
+
+# Button details for hints: fg | bg
+btn_details = [
+    ["#000000", "#9EBCBB"],
+    ["#D0CB29", "#413D40"],
+    ["#FEFFE8", "#580641"],
+    ["#000000", "#FFF5EB"],
+    ["#FFFFFF", "#000000"],
+    ["#FFFFFF", "#381F0F"]
+]
+
+def get_font_details(index):
+    """
+    returns all the details for a desired font
+    :param index: the index of the desired font
+    :return: list of details: Family | Album | fg | bg
+    """
+    details = [
+        font_families[index],
+        album_list[index],
+        btn_details[index][0],
+        btn_details[index][1]
+    ]
+    return details
