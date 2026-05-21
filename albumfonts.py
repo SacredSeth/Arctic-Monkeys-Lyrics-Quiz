@@ -19,27 +19,40 @@ file_list = ["Fonts\AutourOne-Regular.ttf",
 font_families = ["Autour One", "Joti One", "Roboto Slab",
                  "Special Gothic Expanded One", "Luckiest Guy", "Sarpanch"]
 
-# Button details for hints: fg | bg
-btn_details = [
-    ["#000000", "#9EBCBB"],
-    ["#D0CB29", "#413D40"],
-    ["#FEFFE8", "#580641"],
-    ["#000000", "#FFF5EB"],
-    ["#FFFFFF", "#000000"],
-    ["#FFFFFF", "#381F0F"]
+# Button details for hints: fg | btn_bg | menu_bg
+album_colours = [
+    ["#000000", "#9EBCBB", "#9EBCBB"],
+    ["#D0CB29", "#413D40", "#6C676B"],
+    ["#FEFFE8", "#580641", "#580641"],
+    ["#000000", "#FFF5EB", "#FFF5EB"],
+    ["#FFFFFF", "#000000", "#000000"],
+    ["#FFFFFF", "#381F0F", "#381F0F"]
 ]
 
-def get_font_details(album):
+# images of the album covers
+album_images = [
+    "Album Covers\Whatever.png",
+    "Album Covers\Favourite.png",
+    "Album Covers\Humbug.png",
+    "Album Covers\Suck.png",
+    "Album Covers\AM.png",
+    "Album Covers\Tranquility.png"
+]
+
+def get_album_details(album):
     """
     returns all the details for a desired font
     :param album: the album/index of the desired font
-    :return: list of details: Family | fg | bg
+    :return: list of details: Family | fg | bg(btn) | bg(menu) | cover
     """
     index = album_list.index(album)  # get index of album
 
     details = [
         font_families[index],
-        btn_details[index][0],
-        btn_details[index][1]
+        album_colours[index][0],
+        album_colours[index][1],
+        album_colours[index][2],
+        album_images[index]
     ]
+
     return details

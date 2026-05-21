@@ -3,7 +3,6 @@ from tkextrafont import Font
 import albumfonts as af
 import csv
 import random
-from functools import partial
 
 
 # functions
@@ -118,7 +117,8 @@ class Hints:
         # create 2X2 grid of buttons
         for i in range(0, 4):
             self.choice_btn = Button(self.song_choice_frame, text="Song Name",
-                                     font=("Arial", "12"), width=15, bg=btn_bg)
+                                     font=("Arial", "12"), width=15, bg=btn_bg,
+                                     pady=5, wraplength=150)
             self.choice_btn.grid(row=i // 2,
                                  column=i % 2,
                                  padx=5, pady=5)
@@ -158,6 +158,7 @@ class Hints:
 
         # get amount of rounds played, add one to it and configure heading
         rounds_played = self.rounds_played.get()
+        rounds_played += 1
         self.rounds_played.set(rounds_played)
 
         # reset hint level
@@ -167,7 +168,7 @@ class Hints:
         self.round_choices_list, self.round_ans = get_round_choices()
 
         # update heading and labels
-        self.round_heading.config(text=f"Round {rounds_played + 1}")
+        self.round_heading.config(text=f"Round {rounds_played}")
         self.round_lyrics.config(text=self.round_ans[1], font=("Arial", "12", "bold"),
                                  bg=bg_colour, fg='black')
         self.result_label.config(text="Which Arctic Monkeys song is this?", bg="#E6E6E6")
@@ -197,7 +198,7 @@ class Hints:
                 btn_album = self.round_choices_list[i][2]
 
                 # retrieve album design and assign it to the button
-                [alb_font, alb_fg, alb_bg] = af.get_font_details(btn_album)
+                [alb_font, alb_fg, alb_bg] = af.get_album_details(btn_album)[:3]
                 btn.config(font=(alb_font, "12"), fg=alb_fg, bg=alb_bg)
 
             # increment hint level
@@ -208,7 +209,7 @@ class Hints:
             ans_album = self.round_ans[2]
 
             # get album design details and assign them to the lyric heading
-            [lyr_font, lyr_fg, lyr_bg] = af.get_font_details(ans_album)
+            [lyr_font, lyr_fg, lyr_bg] = af.get_album_details(ans_album)[:3]
             self.round_lyrics.config(font=(lyr_font, "12"), fg=lyr_fg, bg=lyr_bg)
 
             # increment hint level
