@@ -7,6 +7,16 @@ album_list = ["Whatever People Say I Am, That's What I'm Not",
               "AM",
               "Tranquility Base Hotel & Casino"]
 
+# release dates
+release_dates_list = [
+    "January 23, 2006",
+    "April 23, 2007",
+    "August 19, 2009",
+    "June 6, 2011",
+    "September 9, 2013",
+    "May 11, 2018"
+]
+
 # list containing the file paths to the fonts
 file_list = ["Fonts\AutourOne-Regular.ttf",
              "Fonts\JotiOne-Regular.ttf",
@@ -43,7 +53,7 @@ def get_album_details(album):
     """
     returns all the details for a desired font
     :param album: the album/index of the desired font
-    :return: list of details: Family | fg | bg(btn) | bg(menu) | cover
+    :return: list of details: Family | fg | bg(btn) | bg(menu) | cover | release date
     """
     index = album_list.index(album)  # get index of album
 
@@ -52,7 +62,8 @@ def get_album_details(album):
         album_colours[index][0],
         album_colours[index][1],
         album_colours[index][2],
-        album_images[index]
+        album_images[index],
+        release_dates_list[index]
     ]
 
     return details
