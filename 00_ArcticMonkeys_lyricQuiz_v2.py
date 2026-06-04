@@ -59,6 +59,15 @@ def get_round_choices():
     return round_choices, correct_ans
 
 
+def font_size(text, family):
+    """
+    Calculates an appropriate font size for the length of the title to fit in a button.
+    :param text: The title to fit into the button
+    :param family: The font family
+    :return: The font size (int)
+    """
+
+
 # classes
 class StartMenu:
     """
@@ -274,12 +283,10 @@ class PlayGame:
         # create 2X2 grid of buttons
         for i in range(0, 4):
             self.choice_btn = Button(self.song_choice_frame, text="Song Name",
-                                     font=("Arial", 12), width=15, wraplength=145,
+                                     font=("Arial", 12), width=33, wraplength=300,
                                      command=partial(self.round_results, i),
                                      bg=btn_bg)
-            self.choice_btn.grid(row=i // 2,
-                                 column=i % 2,
-                                 padx=5, pady=5)
+            self.choice_btn.grid(row=i, padx=5, pady=5)
             self.choice_button_ref.append(self.choice_btn)
 
         # stats and next question button frame
