@@ -263,7 +263,7 @@ class PlayGame:
             make_label = Label(self.game_frame, text=item[0],
                                     font=item[1], wraplength=300,
                                     justify=item[3], bg=bg_colour)
-            make_label.grid(row=item[2])
+            make_label.grid(row=item[2], pady=5)
             game_labels_ref.append(make_label)
 
         # retrieve labels
@@ -278,14 +278,18 @@ class PlayGame:
         self.song_choice_frame = Frame(self.game_frame, padx=5, pady=5, bg=bg_colour)
         self.song_choice_frame.grid(row=3)
 
+        # pixel used to make the button width standard
+        self.pixel = PhotoImage(width=1, height=1)
+
+        # reference list to use for later
         self.choice_button_ref = []
         btn_bg = "#C6C6C6"
-        # create 2X2 grid of buttons
+        # create 4 rows of buttons
         for i in range(0, 4):
             self.choice_btn = Button(self.song_choice_frame, text="Song Name",
-                                     font=("Arial", 12), width=33, wraplength=300,
+                                     font=("Arial", 12), image=self.pixel, wraplength=320,
                                      command=partial(self.round_results, i),
-                                     bg=btn_bg)
+                                     bg=btn_bg, width=325, height=50, compound="center")
             self.choice_btn.grid(row=i, padx=5, pady=5)
             self.choice_button_ref.append(self.choice_btn)
 
@@ -368,6 +372,10 @@ class PlayGame:
         :return:
         """
 
+        # disable the choice buttons
+        for i, item in enumerate(self.choice_button_ref):
+            item.config(state=DISABLED)
+
         # boolean value if correct ans
         result = bool(self.round_choices_list[user_guess] == self.round_ans)
 
@@ -426,9 +434,6 @@ class PlayGame:
             # buttons
             self.next_button.config(text=f"Play Again ({round_increment} rounds)")
             self.end_game_button.config(text="Main Menu")
-
-            for item in self.choice_button_ref:
-                item.config(state=DISABLED)
 
 
     def get_hint(self):
