@@ -118,9 +118,9 @@ class StartMenu:
 
         # text | rounds
         quick_btn_info = [
-            ["Quick", 5],
-            ["Standard", 10],
-            ["Long", 15]
+            ["Five", 5],
+            ["Ten", 10],
+            ["Fifteen", 15]
         ]
 
         quick_btn_list = []
@@ -432,7 +432,7 @@ class PlayGame:
             self.rounds_wanted.set(rounds_wanted)
 
             # buttons
-            self.next_button.config(text=f"Play Again ({round_increment} rounds)")
+            self.next_button.config(text=f"Play Again ({round_increment})")
             self.end_game_button.config(text="Main Menu")
 
 
@@ -482,7 +482,10 @@ class PlayGame:
     def to_stats(self):
         """Opens StatsMenu class"""
 
+        # disable buttons
         self.stats_button.config(state=DISABLED)
+        self.next_button.config(state=DISABLED)
+        self.end_game_button.config(state=DISABLED)
 
         # format stats as:
         # [rounds_played, correct_answers, hints_used,
@@ -610,7 +613,12 @@ class StatsMenu:
 
     def close_stats(self, parent):
         """destroys/closes stats menu"""
+        # enable parent buttons
         parent.stats_button.config(state=NORMAL)
+        parent.next_button.config(state=NORMAL)
+        parent.end_game_button.config(state=NORMAL)
+
+        # destroy the class
         self.stats_box.destroy()
 
 
